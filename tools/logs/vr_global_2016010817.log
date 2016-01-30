@@ -1,0 +1,17 @@
+[INFO  | 2016-01-08 17:19:52,755] | Start using loggingPP abc
+[INFO  | 2016-01-08 17:19:52,763] | D:/MyWorkspace/MyPaper/2.Utility/MyGitTestProject/libTools/x64/Release
+[INFO  | 2016-01-08 17:20:54,439] | Start using loggingPP abc
+[INFO  | 2016-01-08 17:20:54,443] | current path :D:/MyWorkspace/MyPaper/2.Utility/MyGitTestProject/libTools/x64/Release
+[INFO  | 2016-01-08 17:20:54,447] | Obj.hasCoord 0
+[INFO  | 2016-01-08 17:20:54,448] | Obj.hasVerticeNormal 1
+[INFO  | 2016-01-08 17:20:54,450] | Obj.meshId armadillo
+[INFO  | 2016-01-08 17:20:54,451] | Obj.meshName Bunny_7w.obj
+[INFO  | 2016-01-08 17:20:54,453] | Obj.normalizeMesh 1
+[INFO  | 2016-01-08 17:20:54,454] | Obj.octreeFineLevel 5
+[INFO  | 2016-01-08 17:20:54,456] | Obj.textureName 
+[INFO  | 2016-01-08 17:20:54,457] | Simulation.MaxCount 38
+[INFO  | 2016-01-08 17:20:54,459] | Simulation.MinCount 30
+[INFO  | 2016-01-08 17:20:54,460] | Simulation.YoungModulus 600000000.0f
+[INFO  | 2016-01-08 17:20:54,462] | Simulation.doSimulation 1
+[INFO  | 2016-01-08 17:20:54,464] | Simulation.externalForceFactor 1.f
+[INFO  | 2016-01-08 17:20:54,466] | Simulation.scriptForceFactor 10.5f

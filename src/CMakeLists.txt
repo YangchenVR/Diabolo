@@ -1,0 +1,4 @@
+#Diabolo/src
+ADD_SUBDIRECTORY(Base)
+ADD_SUBDIRECTORY(PhysicFEM)
+ADD_SUBDIRECTORY(PlotCartoon)

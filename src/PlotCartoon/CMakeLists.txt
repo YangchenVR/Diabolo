@@ -1,0 +1,13 @@
+#Diabolo/src/Base/PlotCartoon
+FILE (GLOB_RECURSE PhysicFEM_SRCS *.cpp *.cxx *.cc *.C *.c *.h *.hpp)
+
+
+SET (PlotCartoon_NAME ${PROJECT_NAME}_PlotCartoon)
+ADD_EXECUTABLE(${PlotCartoon_NAME} ${PhysicFEM_SRCS})
+SET (PlotCartoon_LIBS ${Boost_LIBRARIES} ${PROJECT_NAME}_Base ${FREETYPE_GL_LIBRARIES})
+TARGET_LINK_LIBRARIES(${PlotCartoon_NAME} ${PlotCartoon_LIBS})
+add_dependencies(${PlotCartoon_NAME} ${PROJECT_NAME}_Base)
+
+SET_TARGET_PROPERTIES(${PlotCartoon_NAME} PROPERTIES VERSION "${APPLICATION_VERSION_MAJOR}.${APPLICATION_VERSION_MINOR}" OUTPUT_NAME ${PlotCartoon_NAME} CLEAN_DIRECT_OUTPUT 1)
+
+INSTALL(TARGETS ${PlotCartoon_NAME} DESTINATION lib)

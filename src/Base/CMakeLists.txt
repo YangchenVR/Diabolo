@@ -1,0 +1,17 @@
+#Diabolo/src/Base
+FILE (GLOB_RECURSE library_SRCS *.cpp *.cxx *.cc *.C *.c *.h *.hpp)
+
+#string( TOLOWER "${CMAKE_BUILD_TYPE}" CMAKE_BUILD_TYPE_lower )
+#if (CMAKE_BUILD_TYPE_lower STREQUAL "debug")
+#    SET (module_BIN ${PROJECT_NAME}_Base_Debug)
+#else (CMAKE_BUILD_TYPE_lower STREQUAL "debug")
+#	SET (module_BIN ${PROJECT_NAME}_Base_Release)
+#endif (CMAKE_BUILD_TYPE_lower STREQUAL "debug") 
+SET (module_NAME ${PROJECT_NAME}_Base)
+ADD_LIBRARY(${module_NAME} STATIC ${library_SRCS})
+SET (module_LIBS ${Boost_LIBRARIES})
+TARGET_LINK_LIBRARIES(${module_NAME} ${module_LIBS})
+
+SET_TARGET_PROPERTIES(${module_NAME} PROPERTIES VERSION "${APPLICATION_VERSION_MAJOR}.${APPLICATION_VERSION_MINOR}" OUTPUT_NAME ${module_NAME} CLEAN_DIRECT_OUTPUT 1)
+
+INSTALL(TARGETS ${module_NAME} DESTINATION lib)
