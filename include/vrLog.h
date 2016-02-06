@@ -4,11 +4,10 @@
 #include "vrMacro.h"
 #include "vrTypes.h"
 #if vrLoggingPP
-#define ELPP_NO_DEFAULT_LOG_FILE
-#define ELPP_THREAD_SAFE
-#define ELPP_FORCE_USE_STD_THREAD
+//#define ELPP_NO_DEFAULT_LOG_FILE
+//#define ELPP_THREAD_SAFE
+//#define ELPP_FORCE_USE_STD_THREAD
 #include "log/easylogging++.h"
-INITIALIZE_EASYLOGGINGPP
 
 #define infoLog LOG(INFO)
 #define debugLog LOG(DEBUG)

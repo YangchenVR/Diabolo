@@ -25,7 +25,7 @@ IF(BUILD_CONF_701)
 ELSEIF(BUILD_CONF_202)
 	INCLUDE(conf_in_202.cmake)
 ELSE()
-	MESSAGE(FATAL_ERROR "##### unsupport configure type! ######")
+	MESSAGE(STATUS "##### using common configuration data! ######")
 ENDIF(BUILD_CONF_701)
 
 #
@@ -87,7 +87,7 @@ LINK_DIRECTORIES(${GLEW_LIBRARY_DIR})
 LINK_DIRECTORIES(${FREEGLUT_LIBRARY_DIR})
 SET (IGL_LIBRARIES nanogui glfw3 OpenGL32)
 SET (FREETYPE_GL_LIBRARIES freetype-gl soil glew32 freeglut)
-
+SET (GLSDK_LIBRARIES glloadD glutilD glmeshD freeglut glfw3 nanogui)
 
 #
 # Configure Files

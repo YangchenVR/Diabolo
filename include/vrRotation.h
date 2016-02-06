@@ -60,6 +60,12 @@ namespace VR
 		typedef vrMat4 tmatrix;
 		typedef vrVec3 myVector;
 		typedef vrFloat myReal;
+#if DoublePrecision
+		typedef Eigen::AngleAxisd vrAngleAxis;
+#else
+		typedef Eigen::AngleAxisf vrAngleAxis;
+#endif
+		
 		typedef vrQuaternion unitquaternion;
 
 		

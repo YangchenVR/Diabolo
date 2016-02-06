@@ -24,7 +24,7 @@ namespace VR
 			strStem = p1.stem().string();
 		}
 
-		int get_filenames(const std::string& dir, std::vector<std::string>& filenames)
+		vrSizt_t get_filenames(const std::string& dir, std::vector<std::string>& filenames)
 		{
 			fs::path path(dir);
 			if (!fs::exists(path))

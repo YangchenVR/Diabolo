@@ -15,13 +15,17 @@
 #include "vrPrintf.h"
 #include <assert.h>
 #include <boost/smart_ptr.hpp>
+//#define GLM_FORCE_CUDA
+#include <glm/glm.hpp>
+#include <stddef.h>
 
 namespace VR
 {
 #if DoublePrecision
 	typedef double vrFloat;
 	typedef int   vrInt;
-	typedef char * vrLpsz;
+	typedef unsigned int vrUnsigned;
+	typedef char const * vrLpsz;
 	typedef Eigen::MatrixXd vrMat;
 	typedef Eigen::Vector2d vrVec2;
 	typedef Eigen::Vector3d vrVec3;
@@ -39,9 +43,46 @@ namespace VR
 
 	typedef Eigen::Quaterniond vrQuaternion;
 
+#define VR_GL_FLOAT GL_FLOAT 
+
+	typedef glm::vec2 vrGLMVec2;
+	typedef glm::vec3 vrGLMVec3;
+	typedef glm::vec4 vrGLMVec4;
+	typedef glm::mat3 vrGLMMat3;
+	typedef glm::mat4 vrGLMMat4;
+
+	typedef std::size_t vrSizt_t;
+
+	struct vrInt2
+	{
+		vrInt x, y;
+	};
+
+	struct vrFloat2
+	{
+		vrGLMVec3::value_type x, y;
+	};
+
+	struct vrFloat3
+	{
+		vrGLMVec3::value_type x, y, z;
+	};
+
+	extern vrFloat3 make_vrFloat3(vrFloat x, vrFloat y, vrFloat z);
+
+	struct vrFloat4
+	{
+		vrGLMVec3::value_type x, y, z, w;
+	};
+
+	extern vrGLMVec3 make_glm_vec3( const vrVec3& src);
+
 #else //DoublePrecision
 	typedef float vrFloat;
+#define VR_GL_FLOAT GL_FLOAT 
 	typedef int   vrInt;
+	typedef unsigned int vrUnsigned;
+	typedef char const * vrLpsz;
 	typedef Eigen::MatrixXf vrMat;
 	typedef Eigen::Vector2f vrVec2;
 	typedef Eigen::Vector3f vrVec3;
@@ -57,9 +98,57 @@ namespace VR
 	typedef Eigen::SparseMatrix<vrFloat, vrMatStoreType> vrSpMat;
 
 	typedef Eigen::Quaternionf vrQuaternion;
+
+	typedef glm::vec2 vrGLMVec2;
+	typedef glm::vec3 vrGLMVec3;
+	typedef glm::vec4 vrGLMVec4;
+	typedef glm::mat3 vrGLMMat3;
+	typedef glm::mat4 vrGLMMat4;
+
+	typedef std::size_t vrSizt_t;
+
+	struct vrInt2
+	{
+		vrInt x, y;
+	};
+
+	struct vrFloat2
+	{
+		vrFloat x, y;
+	};
+
+	struct vrFloat3
+	{
+		vrFloat x, y, z;
+	};
+
+	extern vrFloat3 make_vrFloat3(vrFloat x, vrFloat y, vrFloat z);
+
+	struct vrFloat4
+	{
+		vrFloat x, y, z, w;
+	};
+
+	extern vrGLMVec3 make_glm_vec3(const vrVec3& src);
+
 #endif//DoublePrecision
 	typedef enum{ FEM = 0, EFG = 1, COUPLE = 2, INVALIDTYPE = 3 } CellType;
 	
+	template <unsigned n>
+	struct const_unsigned {
+		static const unsigned value = n;
+	};
+
+	/*template <vrFloat n>
+	struct const_vrFloat {
+		static const vrFloat value = n;
+	};*/
+
+	template <vrInt n>
+	struct const_vrInt {
+		static const vrInt value = n;
+	};
+
 	namespace Geometry
 	{
 		const int shape_Function_Count_In_FEM = 8;

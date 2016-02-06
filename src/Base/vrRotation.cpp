@@ -205,20 +205,21 @@ namespace VR
 
 		MyMatrix_3X3 vrBallController::getRotation()
 		{
-			MyMatrix_3X3 rt = currentQuat.matrix();
+			MyMatrix_3X3 rt = currentQuat.matrix().transpose();
 			return rt;
 		}
 
 		void vrBallController::IssueGLrotation()
 		{
-#ifdef DoublePrecision
-			tmatrix tmp; tmp.setZero(); 
-			tmp.block(0,0,3,3) = currentQuat.matrix().transpose();
-			tmp.coeffRef(3,3) = 1.0;
-			glMultMatrixd(tmp.data());
-#else
-			glMultMatrixf(currentQuat.matrix().data());
-#endif
+			vrExit;
+//#ifdef DoublePrecision
+//			tmatrix tmp; tmp.setZero(); 
+//			tmp.block(0,0,3,3) = currentQuat.matrix().transpose();
+//			tmp.coeffRef(3,3) = 1.0;
+//			glMultMatrixd(tmp.data());
+//#else
+//			glMultMatrixf(currentQuat.matrix().data());
+//#endif
 		}
 
 		void vrBallController::ProjectOnSphere(myVector& v) const
@@ -244,10 +245,10 @@ namespace VR
 				boost::algorithm::clamp(t, -1.0, 1.0);
 				myReal phi = 2.0*asin(t);
 				
-				myVector ror = std::sinf(phi / 2)*rotaxis.normalized();
+				myVector ror = std::sin(phi / 2)*rotaxis.normalized();
 				return unitquaternion(std::cos(phi / 2), ror.x(), ror.y(), ror.z());
-				return unitquaternion(Eigen::AngleAxisd(phi, rotaxis));
-				return unitquaternion(std::cos(phi / 2), rotaxis.x(), rotaxis.y(), rotaxis.z());
+				/*return unitquaternion(Eigen::AngleAxisd(phi, rotaxis));
+				return unitquaternion(std::cos(phi / 2), rotaxis.x(), rotaxis.y(), rotaxis.z());*/
 			}
 		}
 
@@ -375,8 +376,8 @@ namespace VR
 		{
 			myVector* axisSet = GetUsedAxisSet();
 			myVector onPlane;
-			register float max, dot;
-			register int i, nearest;
+			register vrFloat max, dot;
+			register vrInt i, nearest;
 			max = -1;
 			nearest = 0;
 			if (whichConstraints == OTHER_AXES)

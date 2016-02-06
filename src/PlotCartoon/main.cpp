@@ -51,8 +51,8 @@
 
 //VR_FEM::CBallController g_trackball_2(0.5f, unitquaternion(DegToRad(1 * 180), myVector(0, 1, 0))*unitquaternion(DegToRad(-30 * 0), myVector(1, 0, 0)));
 VR::Interactive::vrBallController g_trackball_1(0.5f, 
-	VR::Interactive::unitquaternion(Eigen::AngleAxisd(VR::Cgmath::DegToRad(1 * 180), VR::vrVec3(0, 1, 0)))*
-	VR::Interactive::unitquaternion(Eigen::AngleAxisd(VR::Cgmath::DegToRad(-30 * 0), VR::vrVec3(1, 0, 0))));
+	VR::Interactive::unitquaternion(Eigen::AngleAxisf(VR::Cgmath::DegToRad(1 * 180), VR::vrVec3(0, 1, 0)))*
+	VR::Interactive::unitquaternion(Eigen::AngleAxisf(VR::Cgmath::DegToRad(-30 * 0), VR::vrVec3(1, 0, 0))));
 
 #if defined(__APPLE__)
     #include <Glut/glut.h>
@@ -865,9 +865,12 @@ int main( int argc, char **argv )
 		pm[ConfigureParser::makeKey("Mesh","Type")];
 		pm[ConfigureParser::makeKey("Mesh", "Path")];
 		ConfigureParser::parser_configurefile(inifile, pm);
-		QuadsMeshpath = ConfigureParser::getConfPropertyValue(pm, ConfigureParser::makeKey("Mesh", "Path"));
-		std::cout << ConfigureParser::getConfPropertyValue(pm, ConfigureParser::makeKey("Mesh", "Type")) << std::endl
-			<< ConfigureParser::getConfPropertyValue(pm, ConfigureParser::makeKey("Mesh", "Path")) << std::endl;
+		ConfigureParser::getConfPropertyValueStr(pm, ConfigureParser::makeKey("Mesh", "Path"), QuadsMeshpath);
+
+		int type; 
+		ConfigureParser::getConfPropertyValue(pm, ConfigureParser::makeKey("Mesh", "Type"), type);
+		std::cout << type << std::endl
+			<< QuadsMeshpath << std::endl;
 		
 	}
 
